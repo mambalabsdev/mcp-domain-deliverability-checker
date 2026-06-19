@@ -1,0 +1,69 @@
+# Domain Deliverability Checker MCP Server
+
+[![Smithery](https://smithery.ai/badge/mambabuilt/mcp-domain-deliverability-checker)](https://smithery.ai/server/mambabuilt/mcp-domain-deliverability-checker) [![Glama score](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker/badges/score.svg)](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker) [![MCP Registry](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.modelcontextprotocol.io%2Fv0%2Fservers%3Fsearch%3Dcom.mambabuilt%252Fmcp-domain-deliverability-checker%26limit%3D1&query=%24.servers%5B0%5D._meta%5B%22io.modelcontextprotocol.registry%2Fofficial%22%5D.status&label=mcp%20registry&color=blue)](https://registry.modelcontextprotocol.io/v0/servers?search=com.mambabuilt/mcp-domain-deliverability-checker&limit=1) [![npm version](https://img.shields.io/npm/v/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/~mambalabsdev) [![npm downloads](https://img.shields.io/npm/dm/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/~mambalabsdev) [![license](https://img.shields.io/github/license/mambalabsdev/mcp-domain-deliverability-checker)](https://github.com/mambalabsdev) [![mcpservers.org](https://img.shields.io/badge/mcpservers.org-listed-blue)](https://mcpservers.org/servers/mambalabsdev/mcp-domain-deliverability-checker)
+
+An MCP server that exposes the Mamba Labs Domain Deliverability Checker as a single tool. Install one package and give your MCP client a way to audit any domain's email deliverability and DNS health, wrapping the Mamba Labs actor on Apify and returning Clay-ready flat JSON.
+
+## What it does
+
+This server gives an AI client one tool:
+
+- `check_domain_deliverability`: audit a domain's SPF, DKIM, DMARC, MX, mail provider, DNS blacklist status, catch-all, domain age, and a 0 to 100 deliverability score.
+
+All of the work runs on Apify. This package is a thin client that routes the tool call to the actor and hands back the result.
+
+## Quick start
+
+You need Node.js 18 or newer and an Apify account with an API token.
+
+Add this to your Claude Desktop config:
+
+```json
+{
+  "mcpServers": {
+    "mamba-domain-deliverability-checker": {
+      "command": "npx",
+      "args": ["-y", "@mambalabsdev/mcp-domain-deliverability-checker"],
+      "env": {
+        "APIFY_TOKEN": "your-apify-token"
+      }
+    }
+  }
+}
+```
+
+Get your token at https://console.apify.com/account/integrations, paste it in, and restart Claude Desktop. The tool will be available.
+
+## Prerequisites
+
+- Node.js 18 or newer
+- An Apify account with an API token
+
+## Example prompts
+
+- "Check the email deliverability of stripe.com."
+- "Does github.com have SPF, DKIM, and DMARC set up, and what is its DMARC policy?"
+- "Audit these domains for deliverability: stripe.com, notion.so, figma.com."
+- "Is acme.com on any DNS blacklist, and what is its mail provider?"
+
+## Tool and inputs
+
+`check_domain_deliverability`:
+
+- `domain` (string): bare domain to audit, e.g. stripe.com. Provide this or `domains`.
+- `domains` (array): list of bare domains for batch processing. Takes precedence over `domain`.
+- `batchSize` (number): domains audited concurrently per wave in batch mode. Default 5, maximum 10.
+- `skipCache` (boolean): force a fresh audit and ignore the 24 hour result cache.
+- `attempt_catch_all` (boolean): run the SMTP catch-all probe. Off by default; the Apify platform blocks port 25, so it returns unknown there.
+
+## Full actor documentation
+
+For the complete input and output reference, pricing, and run history, see the Mamba Labs Apify Store page:
+
+https://apify.com/mambalabs
+
+## License
+
+MIT
+
+Built by Mamba Labs. https://apify.com/mambalabs
