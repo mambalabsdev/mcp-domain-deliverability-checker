@@ -58,9 +58,9 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 
 ## Full actor documentation
 
-For the complete input and output reference, pricing, and run history, see the Mamba Labs Apify Store page:
+For the complete input and output reference, pricing, and run history, see the Domain Deliverability Checker actor on the Apify Store (canonical immutable Actor ID URL):
 
-https://apify.com/mambalabs
+https://apify.com/mambalabs/0tVgxI7A6o9jMlxmc
 
 ## License
 
