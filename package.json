@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "MCP server for the Mamba Labs Domain Deliverability Checker actor on Apify. Audit a domain's email deliverability: SPF, DKIM, DMARC, MX, mail provider, catch-all, blacklist, domain age, and a 0 to 100 health score. Clay-ready output.",
   "type": "module",
-  "module": "./src/smithery.ts",
   "bin": {
     "mcp-domain-deliverability-checker": "./build/index.js"
   },
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
-    "prepublishOnly": "npm run build",
-    "dev:smithery": "npx -y @smithery/cli@1 dev",
-    "build:smithery": "npx -y @smithery/cli@1 build"
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "mcp",
