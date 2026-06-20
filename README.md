@@ -1,6 +1,6 @@
 # Domain Deliverability Checker MCP Server
 
-[![Smithery](https://smithery.ai/badge/mambabuilt/mcp-domain-deliverability-checker)](https://smithery.ai/server/mambabuilt/mcp-domain-deliverability-checker) [![Glama score](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker/badges/score.svg)](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker) [![MCP Registry](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.modelcontextprotocol.io%2Fv0%2Fservers%3Fsearch%3Dcom.mambabuilt%252Fmcp-domain-deliverability-checker%26limit%3D1&query=%24.servers%5B0%5D._meta%5B%22io.modelcontextprotocol.registry%2Fofficial%22%5D.status&label=mcp%20registry&color=blue)](https://registry.modelcontextprotocol.io/v0/servers?search=com.mambabuilt/mcp-domain-deliverability-checker&limit=1) [![npm version](https://img.shields.io/npm/v/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/~mambalabsdev) [![npm downloads](https://img.shields.io/npm/dm/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/~mambalabsdev) [![license](https://img.shields.io/github/license/mambalabsdev/mcp-domain-deliverability-checker)](https://github.com/mambalabsdev) [![mcpservers.org](https://img.shields.io/badge/mcpservers.org-listed-blue)](https://mcpservers.org/servers/mambalabsdev/mcp-domain-deliverability-checker)
+[![Smithery](https://smithery.ai/badge/@mambabuilt/mcp-domain-deliverability-checker)](https://smithery.ai/server/@mambabuilt/mcp-domain-deliverability-checker) [![Glama score](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker/badges/score.svg)](https://glama.ai/mcp/servers/mambalabsdev/mcp-domain-deliverability-checker) [![MCP Registry](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fregistry.modelcontextprotocol.io%2Fv0%2Fservers%3Fsearch%3Dcom.mambabuilt%252Fmcp-domain-deliverability-checker%26limit%3D1&query=%24.servers%5B0%5D._meta%5B%22io.modelcontextprotocol.registry%2Fofficial%22%5D.status&label=mcp%20registry&color=blue)](https://registry.modelcontextprotocol.io/v0/servers?search=com.mambabuilt/mcp-domain-deliverability-checker&limit=1) [![npm version](https://img.shields.io/npm/v/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/package/@mambalabsdev/mcp-domain-deliverability-checker) [![npm downloads](https://img.shields.io/npm/dm/@mambalabsdev/mcp-domain-deliverability-checker)](https://www.npmjs.com/package/@mambalabsdev/mcp-domain-deliverability-checker) [![license](https://img.shields.io/github/license/mambalabsdev/mcp-domain-deliverability-checker)](https://github.com/mambalabsdev/mcp-domain-deliverability-checker/blob/main/LICENSE) [![mcpservers.org](https://img.shields.io/badge/mcpservers.org-listed-blue)](https://mcpservers.org/servers/mambalabsdev/mcp-domain-deliverability-checker)
 
 An MCP server that exposes the Mamba Labs Domain Deliverability Checker as a single tool. Install one package and give your MCP client a way to audit any domain's email deliverability and DNS health, wrapping the Mamba Labs actor on Apify and returning Clay-ready flat JSON.
 
@@ -61,6 +61,25 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 For the complete input and output reference, pricing, and run history, see the Domain Deliverability Checker actor on the Apify Store (canonical immutable Actor ID URL):
 
 https://apify.com/mambalabs/0tVgxI7A6o9jMlxmc
+
+---
+
+## Mamba Labs GTM Suite
+
+This server is part of the **Mamba Labs GTM Suite**, a fleet of eight specialized MCP servers for go-to-market signal intelligence, each backed by a dedicated Apify actor.
+
+| Actor | Immutable Actor ID |
+|---|---|
+| [GTM Hiring Signal Scraper](https://console.apify.com/actors/D7O1SA2EqwHGsGr1P) | `D7O1SA2EqwHGsGr1P` |
+| [GTM Tech Stack Signal Enrichment](https://console.apify.com/actors/qyd7nNyqFPelQViBx) | `qyd7nNyqFPelQViBx` |
+| [GTM Signals Aggregator](https://console.apify.com/actors/xKdRfnfFNkdMpFuNs) | `xKdRfnfFNkdMpFuNs` |
+| [Job Board Keyword Signal Scanner](https://console.apify.com/actors/4DvqpvhMR74NLcDDY) | `4DvqpvhMR74NLcDDY` |
+| [Domain to LinkedIn URL Resolver](https://console.apify.com/actors/3HtnSaqPHOg1Qg5gx) | `3HtnSaqPHOg1Qg5gx` |
+| [ICP Fit Scorer](https://console.apify.com/actors/W161DT8W4kW55dMFh) | `W161DT8W4kW55dMFh` |
+| [Domain Deliverability Checker](https://console.apify.com/actors/0tVgxI7A6o9jMlxmc) | `0tVgxI7A6o9jMlxmc` |
+| [Company Firmographic Enricher](https://console.apify.com/actors/YlUtLWjfPpqykmB8g) | `YlUtLWjfPpqykmB8g` |
+
+> Built by [Mamba Labs](https://github.com/mambalabsdev) | [npm](https://www.npmjs.com/org/mambalabsdev) | [Apify Store](https://apify.com/mambabuilt)
 
 ## License
 
