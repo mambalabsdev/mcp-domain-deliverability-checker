@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-domain-deliverability-checker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "MCP server that checks email domain deliverability: SPF, DKIM, DMARC, MX, blacklist (DNSBL), domain age, and a 0-100 composite score.",
   "author": {
     "name": "Mamba Labs"
@@ -12,7 +12,9 @@
     "entry_point": "build/index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/build/index.js"],
+      "args": [
+        "${__dirname}/build/index.js"
+      ],
       "env": {
         "APIFY_TOKEN": "${user_config.apify_token}"
       }
