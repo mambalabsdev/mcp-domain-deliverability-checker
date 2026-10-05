@@ -11,6 +11,8 @@ An MCP server that exposes the Mamba Labs Domain Deliverability Checker as a sin
 - [Prerequisites](#prerequisites)
 - [Example prompts](#example-prompts)
 - [Tool and inputs](#tool-and-inputs)
+- [Output](#output)
+- [Pricing](#pricing)
 - [Full actor documentation](#full-actor-documentation)
 - [Mamba Labs GTM Suite](#mamba-labs-gtm-suite)
 - [License](#license)
@@ -19,7 +21,7 @@ An MCP server that exposes the Mamba Labs Domain Deliverability Checker as a sin
 
 This server gives an AI client one tool:
 
-- `check_domain_deliverability`: audit a domain's SPF, DKIM, DMARC, MX, mail provider, DNS blacklist status, catch-all, domain age, and a 0 to 100 deliverability score.
+- `check_domain_deliverability`: audit one domain or a list of domains for SPF, DKIM, DMARC, MX, mail provider, DNS blacklist status, catch-all, domain age, and a 0 to 100 deliverability score. Results are cached for 24 hours per domain. It reads public DNS only, sends no email, and does not verify individual mailboxes.
 
 All of the work runs on Apify. This package is a thin client that routes the tool call to the actor and hands back the result.
 
@@ -63,15 +65,32 @@ Get your token at https://console.apify.com/account/integrations, paste it in, a
 
 - `domain` (string): bare domain to audit, e.g. stripe.com. Provide this or `domains`.
 - `domains` (array): list of bare domains for batch processing. Takes precedence over `domain`.
-- `batchSize` (number): domains audited concurrently per wave in batch mode. Default 5, maximum 10.
-- `skipCache` (boolean): force a fresh audit and ignore the 24 hour result cache.
+- `batchSize` (integer): how many domains from the list are audited at the same time. 1 to 10. Default 5.
+- `skipCache` (boolean): ignore the 24 hour result cache and audit again now, for example right after a DNS change. Default false.
 - `attempt_catch_all` (boolean): run the SMTP catch-all probe. Off by default; the Apify platform blocks port 25, so it returns unknown there.
+
+## Output
+
+One flat row per domain: `domain`, `spf_record`, `spf_valid`, `spf_policy`, `dkim_selectors_found`, `dkim_present`, `dmarc_record`, `dmarc_policy`, `dmarc_valid`, `mx_records`, `has_mx`, `mail_provider`, `catch_all`, `catch_all_status`, `blacklisted`, `blacklists_listed`, `blacklists_checked`, `blacklist_status`, `spam_trap_risk`, `spam_trap_flags`, `domain_age_days`, `domain_age_source`, `has_website`, `deliverability_score`, `risk_level`, `audit_error`, and `run_date`.
+
+## Pricing
+
+Domain Deliverability Checker is pay per event on Apify.
+
+| Event | Price | Fires when |
+| --- | ---: | --- |
+| `apify-actor-start` | $0.00005 | Once per run, on start, one event per GB of memory (minimum one). Apify's start event. |
+| `apify-default-dataset-item` | $0.005 (FREE tier), down to $0.00425 on GOLD and above | Once per row written to the dataset. |
+
+The tool starts the actor run and polls it to a finished status, so a long run is not cut off at 300 seconds. A run that does not succeed comes back as an error with its run ID and status.
 
 ## Full actor documentation
 
-For the complete input and output reference, pricing, and run history, see the Domain Deliverability Checker actor on the Apify Store (canonical immutable Actor ID URL):
+For the complete input and output reference, pricing, and run history, see the Domain Deliverability Checker actor on the Apify Store:
 
-https://apify.com/mambalabs/0tVgxI7A6o9jMlxmc
+https://apify.com/mambalabs/domain-deliverability-checker
+
+The wrapper calls the actor by its immutable ID `0tVgxI7A6o9jMlxmc`, so a Store rename never breaks it.
 
 ---
 
