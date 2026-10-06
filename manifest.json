@@ -1,7 +1,7 @@
 {
   "manifest_version": "0.3",
   "name": "mcp-domain-deliverability-checker",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "MCP server that checks email domain deliverability: SPF, DKIM, DMARC, MX, blacklist (DNSBL), domain age, and a 0-100 composite score.",
   "author": {
     "name": "Mamba Labs"
