@@ -81,6 +81,7 @@ Domain Deliverability Checker is pay per event on Apify.
 | --- | ---: | --- |
 | `apify-actor-start` | $0.00005 | Once per run, on start, one event per GB of memory (minimum one). Apify's start event. |
 | `apify-default-dataset-item` | $0.005 (FREE tier), down to $0.00425 on GOLD and above | Once per row written to the dataset. |
+| `max_charge_usd` | number | Optional cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. |
 
 The tool starts the actor run and polls it to a finished status, so a long run is not cut off at 300 seconds. A run that does not succeed comes back as an error with its run ID and status.
 
