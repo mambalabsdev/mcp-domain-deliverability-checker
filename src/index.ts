@@ -206,12 +206,13 @@ server.registerTool(
       "Audit the email deliverability and DNS health of one domain or a list of domains before sending cold email from it or to it. Returns one flat, Clay-ready JSON row per domain: SPF, DKIM, and DMARC records with the DMARC policy, MX records and mail provider, DNS blacklist status, catch-all status, domain age, and a 0 to 100 health score. Results are cached for 24 hours per domain; set skipCache to force a fresh audit. It reads public DNS only: it sends no email and does not verify individual mailboxes, so use an email verifier for that. A run that does not succeed is returned as an error with its run ID and status. Read-only; requires an APIFY_TOKEN and consumes Apify credits per call.",
     annotations: {
       title: "Check Domain Deliverability",
-      readOnlyHint: true,
+      readOnlyHint: false,
       destructiveHint: false,
       idempotentHint: true,
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before the next result that would take this run's charges over this amount, and keeps every result already charged. Leave empty to rely only on the maximum cost per run you set in Apify."),
       domain: z
         .string()
         .optional()
@@ -237,7 +238,7 @@ server.registerTool(
         .describe("Set true to run the SMTP catch-all probe. The Apify platform blocks outbound port 25, so on Apify the probe returns unknown; leave it off unless you run the actor where port 25 is open. Default: false."),
     },
   },
-  async ({ domain, domains, batchSize, skipCache, attempt_catch_all }) => {
+  async ({ domain, domains, batchSize, skipCache, attempt_catch_all, max_charge_usd }) => {
     if (
       (domain === undefined || domain === "") &&
       (!Array.isArray(domains) || domains.length === 0)
@@ -250,7 +251,7 @@ server.registerTool(
     return runActor(
       "0tVgxI7A6o9jMlxmc",
       "Domain Deliverability Checker",
-      compact({ domain, domains, batchSize, skipCache, attempt_catch_all }),
+      compact({ max_charge_usd, domain, domains, batchSize, skipCache, attempt_catch_all }),
     );
   },
 );
